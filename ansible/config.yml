@@ -1,0 +1,8 @@
+---
+- hosts: controller
+  gather_facts: False
+  vars_files:
+    - vars/tsung_config.yml
+  roles:
+    - { role: hosts, tags: [hosts] }
+    - { role: tsung_config, tags: [config] }

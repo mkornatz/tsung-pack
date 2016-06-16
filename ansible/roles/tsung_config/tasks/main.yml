@@ -1,0 +1,36 @@
+---
+- name: create ~/.tsung dir
+  file:
+    path=~/.tsung
+    mode=755
+    state=directory
+
+- name: write hosts.xml
+  template: 
+    src=./roles/tsung_config/templates/hosts.j2
+    dest=~/.tsung/hosts.xml
+    mode=0644
+
+- name: write load.xml from {{ load_file }}
+  template: 
+    src={{ load_file }}
+    dest=~/.tsung/load.xml
+    mode=0644
+
+- name: write options.xml
+  template: 
+    src=./roles/tsung_config/templates/options.j2
+    dest=~/.tsung/options.xml
+    mode=0644
+
+- name: write sessions.xml from {{ sessions_file }}
+  template: 
+    src={{ sessions_file }}
+    dest=~/.tsung/sessions.xml
+    mode=0644
+
+- name: write tsung.xml (main config)
+  template: 
+    src=./roles/tsung_config/templates/tsung.j2
+    dest=~/.tsung/tsung.xml
+    mode=0644

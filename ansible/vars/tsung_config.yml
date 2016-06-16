@@ -1,0 +1,28 @@
+---
+# Latest release as of 20 July 2015
+tsung_version: v1.6.0
+
+# These are all the tsung "workers" that actually perform
+# the requests. The controller can act as a worker, too!
+clients:
+  - private_dns_name: ''
+    private_ip_address: ''
+    private_short_name: 'worker-1'
+    cpus: 2
+  - private_dns_name: ''
+    private_ip_address: ''
+    private_short_name: 'worker-2'
+    cpus: 2
+
+# One of the tsung nodes needs to be chosen as the controller
+controller:
+  private_dns_name: ''
+  private_ip_address: ''
+  private_short_name: 'controller'
+  cpus: 2
+
+# The file that describes the load phases
+load_file: 'vars/run/loads/example.xml'
+
+# The file that contains all tsung sessions to be run
+sessions_file: 'vars/run/sessions/example.xml'

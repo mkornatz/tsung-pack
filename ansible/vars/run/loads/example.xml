@@ -1,0 +1,13 @@
+<!-- This describes each phase of the entire run -->
+<!-- http://tsung.erlang-projects.org/user_manual/conf-load.html -->
+<load>
+  <!-- 1 users created every second for 10 minutes -->
+  <arrivalphase phase="1" duration="10" unit="minute">
+    <users interarrival="1" unit="second"></users>
+  </arrivalphase>
+
+  <!-- 2 users created every second for 10 minutes -->
+  <arrivalphase phase="2" duration="10" unit="minute">
+    <users interarrival="0.5" unit="second"></users>
+  </arrivalphase>
+</load>

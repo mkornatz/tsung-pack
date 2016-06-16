@@ -1,0 +1,11 @@
+<!-- This describes all the tsung "worker" servers -->
+<clients>
+  {% for client in clients %}
+  <client host="{{client.private_short_name}}" cpu="{{client.cpus | default(1) }}"/>
+  {% endfor %}
+</clients>
+
+<!-- One controller -->
+<servers>
+  <server host="controller" port="8080" type="tcp"/>
+</servers>

@@ -1,0 +1,18 @@
+---
+# Generates a ssh key that tsung uses to communicate with the other tsung servers
+- hosts: localhost
+  gather_facts: False
+  tasks:
+  - name: generate ssh key for tsungs to talk to each other
+    command: ssh-keygen -t rsa -f ./roles/tsung/templates/id_rsa
+    args:
+      creates: ./roles/tsung/templates/id_rsa
+
+- name: Setup tsung on all tsung nodes
+  hosts: all_nodes
+  gather_facts: False
+  vars_files:
+    - vars/tsung_config.yml
+  roles:
+    - { role: erlang, tags: [erlang] }
+    - { role: tsung, tags: [tsung] }

@@ -1,0 +1,5 @@
+*.retry
+vars/run/sessions/*
+vars/run/sessions/!example.xml
+vars/run/loads/*
+vars/run/loads/!example.xml

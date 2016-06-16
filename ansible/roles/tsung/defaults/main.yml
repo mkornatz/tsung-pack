@@ -1,0 +1,17 @@
+---
+# Tsung Installation Configuration
+
+tsung_version: v1.6.0
+
+# directory where source will be built
+tsung_src_dir: /tmp/tsung
+
+# Required OS packages
+tsung_yum_pkgs:
+  - git
+  - autoconf
+  - automake
+  - make
+  - docbook-utils
+  - gnuplot
+  - perl-Template-Toolkit

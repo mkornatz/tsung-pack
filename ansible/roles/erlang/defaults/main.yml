@@ -1,0 +1,15 @@
+---
+# directory where source will be built
+erlang_src_dir: /tmp/erlang
+
+# Version
+erlang_version: R15B03-1
+
+# OS packages
+erlang_yum_pkgs:
+  - gcc
+  - glibc-devel
+  - make
+  - ncurses-devel
+  - openssl-devel
+  - autoconf

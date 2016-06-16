@@ -1,0 +1,46 @@
+---
+# Erlang Install
+- name: install system packages for erlang compilation
+  become: yes
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ erlang_yum_pkgs }}"
+
+- name: create erlang src directory
+  file:
+    path: "{{erlang_src_dir}}"
+    state: directory
+
+- name: download the erlang sources
+  get_url: >
+    url=https://packages.erlang-solutions.com/erlang/esl-erlang-src/otp_src_{{erlang_version}}.tar.gz
+    dest=/tmp/otp_src_{{erlang_version}}.tar.gz
+
+- name: extract the erlang sources
+  unarchive: >
+    src=/tmp/otp_src_{{erlang_version}}.tar.gz
+    dest={{erlang_src_dir}}
+    copy=no
+    creates={{erlang_src_dir}}/otp_src_R15B03/
+
+- name: move extracted files into proper place
+  shell: mv -n {{erlang_src_dir}}/otp_src_*/* {{erlang_src_dir}}
+
+- name: configure
+  command: ./configure --prefix=/usr
+    chdir={{erlang_src_dir}}
+    creates={{erlang_src_dir}}/config.status
+
+- name: make
+  shell:
+    /usr/bin/make
+    chdir={{erlang_src_dir}}
+    creates={{erlang_src_dir}}/bin/erl
+
+- name: make install
+  become: yes
+  shell:
+    /usr/bin/make install
+    chdir={{erlang_src_dir}}
+    creates=/usr/bin/erl

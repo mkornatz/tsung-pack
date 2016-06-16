@@ -1,0 +1,1 @@
+user_agent: "tsung {{ tsung_version | default('') }}"
