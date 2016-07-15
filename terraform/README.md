@@ -4,6 +4,7 @@
 When you have Terraform installed, get started right away by applying the plan.
 
 ```
+# in the directory that contains tsung-cluster.tf
 > terraform apply
 ```
 

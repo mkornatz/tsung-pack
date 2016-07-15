@@ -3,6 +3,7 @@ Everything you need to get up and running with Tsung for load testing.
 
 
 ## Requirements
++ [tsung](http://tsung.erlang-projects.org/user_manual/installation.html) v1.6.0
 + [ansible](http://docs.ansible.com/ansible/intro_installation.html) 2.1.0.0 (older versions should work, but aren't guaranteed)
 + [Terraform](https://www.terraform.io/docs/index.html) v0.6.16
 
@@ -23,7 +24,7 @@ Once your infrastructure is created, you'll need to reference information about 
 There are two files you need to update, `ansible/vars/tsung_config.yml` and your ansible inventory file in `ansible/hosts/`.
 
 
-#### `ansible/vars/tsung_config.yml`
+#### ansible/vars/tsung_config.yml
 Add each of your Tsung nodes that will be actually making requests to the `clients:` section of the file. You will need to choose a single node to act as your controller. The details of that instance need to be added to the `controller:` section.
 
 
@@ -41,7 +42,11 @@ Ansible playbooks are included to handle this for you. Erlang and Tsung are buil
 
 
 ### 4. Record your sessions
-No need to go into detail here. To create sessions for Tsung to run, refer to the [Tsung proxy recorder docs](http://tsung.erlang-projects.org/user_manual/proxy.html). You will use these sessions in the following step to configure Tsung.
+Tsung runs a series of scenarios to mock user traffic. Sessions define the payloads used in testing. [Learn about sessions](http://tsung.erlang-projects.org/user_manual/conf-sessions.html).
+
+Recording sessions can be done locally pretty easily. Refer to the [Tsung proxy recorder docs](http://tsung.erlang-projects.org/user_manual/proxy.html) to configure. Tsung can record/play sessions over http, websockets, database protocols, LDAP, Jabber/XMPP, etc.
+
+*Important Note:* When your sessions are recorded, review the output xml to make sure you remove any requests to third party sites and services. You don't want to be DDoS-ing anyone unknowningly.
 
 
 ### 5. Configure Tsung
